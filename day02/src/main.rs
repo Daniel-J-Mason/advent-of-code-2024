@@ -37,8 +37,8 @@ fn is_safe(levels: &Vec<i32>) -> bool {
 fn safe_reports_count(reports: &Vec<Vec<i32>>) -> usize {
     let mut count = 0;
 
-    for input in reports {
-        if is_safe(input) {
+    for report in reports {
+        if is_safe(report) {
             count += 1;
         }
     }
@@ -46,7 +46,7 @@ fn safe_reports_count(reports: &Vec<Vec<i32>>) -> usize {
     count
 }
 
-fn generate_level_set(levels: &Vec<i32>) -> Vec<Vec<i32>> {
+fn generate_report_set(levels: &Vec<i32>) -> Vec<Vec<i32>> {
     let mut set: Vec<Vec<i32>> = Vec::new();
 
     for i in 0..levels.len() {
@@ -69,8 +69,8 @@ fn generate_level_set(levels: &Vec<i32>) -> Vec<Vec<i32>> {
 fn dampened_safe_reports_count(reports: &Vec<Vec<i32>>) -> usize {
     let mut count = 0;
 
-    for input in reports {
-        let set = generate_level_set(input);
+    for report in reports {
+        let set = generate_report_set(report);
 
         for level in set {
             if is_safe(&level) {
