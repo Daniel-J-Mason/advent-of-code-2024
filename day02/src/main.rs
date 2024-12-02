@@ -72,8 +72,8 @@ fn dampened_safe_reports_count(reports: &Vec<Vec<i32>>) -> usize {
     for report in reports {
         let set = generate_report_set(report);
 
-        for level in set {
-            if is_safe(&level) {
+        for permutation in set {
+            if is_safe(&permutation) {
                 count += 1;
                 break;
             }
