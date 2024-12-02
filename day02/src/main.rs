@@ -96,10 +96,7 @@ fn parse_reports(lines: &Vec<String>) -> Vec<Vec<i32>> {
         let split_line = line.split(" ");
 
         for item in split_line {
-            match item.parse::<i32>() {
-                Ok(num) => numbers.push(num),
-                Err(_) => continue,
-            }
+            numbers.push(item.parse().unwrap());
         }
 
         result.push(numbers);
