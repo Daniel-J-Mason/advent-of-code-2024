@@ -15,6 +15,7 @@ fn is_decreasing(levels: &Vec<i32>) -> bool {
     levels == &reverse_sorted_levels
 }
 
+// Safe if levels are either all decreasing or all increasing, with no step greater than 3 or less than 1
 fn is_safe(levels: &Vec<i32>) -> bool {
     if !is_increasing(levels) && !is_decreasing(levels) {
         return false;
@@ -46,6 +47,7 @@ fn safe_reports_count(reports: &Vec<Vec<i32>>) -> usize {
     count
 }
 
+// For each report, generate all permutations of one item removed
 fn generate_report_set(levels: &Vec<i32>) -> Vec<Vec<i32>> {
     let mut set: Vec<Vec<i32>> = Vec::new();
 
@@ -66,6 +68,7 @@ fn generate_report_set(levels: &Vec<i32>) -> Vec<Vec<i32>> {
     set
 }
 
+// Safe if any permutation for a given report passes original safe check
 fn dampened_safe_reports_count(reports: &Vec<Vec<i32>>) -> usize {
     let mut count = 0;
 
