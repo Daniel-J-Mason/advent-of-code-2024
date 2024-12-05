@@ -24,10 +24,10 @@ fn split_input(input: &Vec<String>) -> (Vec<String>, Vec<String>) {
     (first, second)
 }
 
-fn parse_pairs(input: &Vec<String>) -> Vec<(usize, usize)> {
+fn parse_pairs(graph_input: &Vec<String>) -> Vec<(usize, usize)> {
     let mut output: Vec<(usize, usize)> = Vec::new();
 
-    for line in input {
+    for line in graph_input {
         let parts: Vec<&str> = line.split("|").collect();
 
         let left: usize = parts[0].parse().unwrap();
