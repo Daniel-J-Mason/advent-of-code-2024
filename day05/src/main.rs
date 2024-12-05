@@ -5,8 +5,8 @@ use common::parse_to_array;
 
 fn split_input(input: &Vec<String>) -> (Vec<String>, Vec<String>) {
     let mut delimiter_found = false;
-    let mut first: Vec<String> = Vec::new();
-    let mut second: Vec<String> = Vec::new();
+    let mut graph_input: Vec<String> = Vec::new();
+    let mut updates_input: Vec<String> = Vec::new();
 
     for line in input {
         if line == "" {
@@ -15,13 +15,13 @@ fn split_input(input: &Vec<String>) -> (Vec<String>, Vec<String>) {
         }
 
         if !delimiter_found {
-            first.push(line.clone());
+            graph_input.push(line.clone());
         } else {
-            second.push(line.clone());
+            updates_input.push(line.clone());
         }
     }
 
-    (first, second)
+    (graph_input, updates_input)
 }
 
 fn parse_pairs(graph_input: &Vec<String>) -> Vec<(usize, usize)> {
