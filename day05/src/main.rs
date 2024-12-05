@@ -3,6 +3,27 @@ use std::hash::Hash;
 use std::usize;
 use common::parse_to_array;
 
+fn split_input(input: &Vec<String>) -> (Vec<String>, Vec<String>) {
+    let mut delimiter_found = false;
+    let mut first: Vec<String> = Vec::new();
+    let mut second: Vec<String> = Vec::new();
+
+    for line in input {
+        if line == "" {
+            delimiter_found = true;
+            continue;
+        }
+
+        if !delimiter_found {
+            first.push(line.clone());
+        } else {
+            second.push(line.clone());
+        }
+    }
+
+    (first, second)
+}
+
 fn parse_pairs(input: &Vec<String>) -> Vec<(usize, usize)> {
     let mut output: Vec<(usize, usize)> = Vec::new();
 
@@ -113,27 +134,6 @@ fn sum_incorrect_updates(graph: &HashMap<usize, Vec<usize>>, updates: &Vec<Vec<u
     }
 
     total
-}
-
-fn split_input(input: &Vec<String>) -> (Vec<String>, Vec<String>) {
-    let mut delimiter_found = false;
-    let mut first: Vec<String> = Vec::new();
-    let mut second: Vec<String> = Vec::new();
-
-    for line in input {
-        if line == "" {
-            delimiter_found = true;
-            continue;
-        }
-
-        if !delimiter_found {
-            first.push(line.clone());
-        } else {
-            second.push(line.clone());
-        }
-    }
-
-    (first, second)
 }
 
 fn main() {
