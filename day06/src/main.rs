@@ -100,7 +100,6 @@ fn get_total_possible_loops(grid: &Grid) -> usize {
     for grid in grid_permutation {
         if unique_guard_steps(&grid).1 {
             count += 1;
-            println!("{}", count);
         }
     }
 
