@@ -2,8 +2,8 @@ use std::ops::Add;
 
 #[derive(Debug, Clone, Copy, Eq, Hash, PartialEq)]
 pub struct Coordinate {
-    x: i32,
-    y: i32
+    pub x: i32,
+    pub y: i32
 }
 
 impl Coordinate {

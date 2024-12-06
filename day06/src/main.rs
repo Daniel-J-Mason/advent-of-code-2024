@@ -28,8 +28,8 @@ fn parse_input(input: &Vec<String>) -> Grid {
     }
 }
 
-//returns unique steps and whether a loop was detected
-fn unique_guard_steps(grid: &Grid) -> (usize, bool) {
+//returns unique guard steps as well as whether a loop was detected
+fn unique_guard_steps(grid: &Grid) -> (HashSet<Coordinate>, bool) {
     let mut contains_loop = false;
 
     let mut guard: Guard = Guard {
@@ -64,27 +64,27 @@ fn unique_guard_steps(grid: &Grid) -> (usize, bool) {
         }
     }
 
-    (unique_coords.len(), contains_loop)
+    (unique_coords, contains_loop)
 }
 
-//permute grid
+//permute grid based on original path
 fn generate_all_possible_grids(grid: &Grid) -> Vec<Grid> {
     let mut grids = Vec::new();
+    let placement_coords = unique_guard_steps(grid).0;
 
-    for (row_index, row) in grid.contents.iter().enumerate() {
-        for (col_index, &char) in row.iter().enumerate() {
-            if char == '.' {
-                let mut permute_contents = grid.contents.clone();
+    for coordinate in placement_coords.iter() {
+        let char = grid.get_char_at(*coordinate).unwrap();
+        if *char == '.' {
+            let mut permute_contents = grid.contents.clone();
 
-                permute_contents[row_index][col_index] = '#';
+            permute_contents[coordinate.y as usize][coordinate.x as usize] = '#';
 
-                grids.push(
-                    Grid {
-                        contents: permute_contents,
-                        starting_position: grid.starting_position,
-                    }
-                );
-            }
+            grids.push(
+                Grid {
+                    contents: permute_contents,
+                    starting_position: grid.starting_position,
+                }
+            );
         }
     }
 
@@ -100,6 +100,7 @@ fn get_total_possible_loops(grid: &Grid) -> usize {
     for grid in grid_permutation {
         if unique_guard_steps(&grid).1 {
             count += 1;
+            println!("{}", count);
         }
     }
 
@@ -111,7 +112,7 @@ fn main() {
     let grid = parse_input(&input);
 
     let part_one = unique_guard_steps(&grid);
-    println!("{}", part_one.0);
+    println!("{}", part_one.0.len());
 
     let part_two = get_total_possible_loops(&grid);
     println!("{}", part_two);
@@ -140,7 +141,7 @@ mod tests {
 
         let result = unique_guard_steps(&grid);
 
-        assert_eq!(result.0, 41)
+        assert_eq!(result.0.len(), 41)
     }
 
     #[test]
