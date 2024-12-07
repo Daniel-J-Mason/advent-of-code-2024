@@ -107,4 +107,23 @@ mod tests {
 
         assert_eq!(find_total_calibration_sum(&calibration_equations), 3749);
     }
+
+    #[test]
+    fn part_two_test() {
+        let input = vec![
+            "190: 10 19".to_string(),
+            "3267: 81 40 27".to_string(),
+            "83: 17 5".to_string(),
+            "156: 15 6".to_string(),
+            "7290: 6 8 6 15".to_string(),
+            "161011: 16 10 13".to_string(),
+            "192: 17 8 14".to_string(),
+            "21037: 9 7 18 13".to_string(),
+            "292: 11 6 16 20".to_string(),
+        ];
+
+        let calibration_equations = parse_calibration_equations(&input);
+
+        assert_eq!(find_total_calibration_sum_with_concatenation(&calibration_equations), 11387);
+    }
 }
