@@ -41,12 +41,12 @@ fn calculate_extended_nodes(x1: &i32, y1: &i32, x2: &i32, y2: &i32, bounds: &(i3
     let x_delta = x1 - x2;
     let y_delta = y1 - y2;
 
-    let mut points = vec![(*x1, *y1), (*x2, *y2)];
+    let mut anti_nodes = vec![(*x1, *y1), (*x2, *y2)];
 
     let mut new_x = x1 + x_delta;
     let mut new_y = y1 + y_delta;
     while is_inbounds(&(new_x, new_y), bounds) {
-        points.push((new_x, new_y));
+        anti_nodes.push((new_x, new_y));
         new_x += x_delta;
         new_y += y_delta;
     }
@@ -54,12 +54,12 @@ fn calculate_extended_nodes(x1: &i32, y1: &i32, x2: &i32, y2: &i32, bounds: &(i3
     let mut new_x = x2 - x_delta;
     let mut new_y = y2 - y_delta;
     while is_inbounds(&(new_x, new_y), bounds) {
-        points.push((new_x, new_y));
+        anti_nodes.push((new_x, new_y));
         new_x -= x_delta;
         new_y -= y_delta;
     }
 
-    points
+    anti_nodes
 }
 
 fn count_anti_nodes(nodes: &HashMap<char, Vec<(i32, i32)>>, bounds: &(i32, i32)) -> i32 {
