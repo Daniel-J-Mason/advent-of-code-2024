@@ -63,6 +63,7 @@ fn calculate_extended_nodes(x1: &i32, y1: &i32, x2: &i32, y2: &i32, bounds: &(i3
 }
 
 fn count_anti_nodes(nodes: &HashMap<char, Vec<(i32, i32)>>, bounds: &(i32, i32)) -> i32 {
+    // Unique coords, use set.
     let mut anti_nodes: HashSet<(i32, i32)> = HashSet::new();
 
     // check all pairs per char by taking first against remaining, second against remaining, etc.
@@ -88,6 +89,7 @@ fn count_extended_anti_nodes(nodes: &HashMap<char, Vec<(i32, i32)>>, bounds: &(i
     // Unique coords, use set.
     let mut anti_nodes: HashSet<(i32, i32)> = HashSet::new();
 
+    // check all pairs per char by taking first against remaining, second against remaining, etc.
     for (_char, coords) in nodes {
         for i in 0..coords.len() {
             let current = coords[i];
