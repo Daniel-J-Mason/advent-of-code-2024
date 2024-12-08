@@ -129,12 +129,12 @@ mod tests {
         );
 
         assert_eq!(
-            calculate_anti_nodes(&9, &10, &8, &9, ),
+            calculate_anti_nodes(&9, &10, &8, &9),
             vec![(10, 11), (7, 8)]
         );
 
         assert_eq!(
-            calculate_anti_nodes(&0, &2, &0, &4, ),
+            calculate_anti_nodes(&0, &2, &0, &4),
             vec![(0, 0), (0, 6)]
         );
     }
