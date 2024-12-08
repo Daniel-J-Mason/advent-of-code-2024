@@ -33,6 +33,10 @@ fn calculate_anti_nodes(x1: &i32, y1: &i32, x2: &i32, y2: &i32) -> Vec<(i32, i32
     vec![(new_x1, new_y1), (new_x2, new_y2)]
 }
 
+fn is_inbounds(coord: &(i32, i32), bounds: &(i32, i32)) -> bool {
+    coord.0 >= 0 && coord.0 < bounds.0 && coord.1 >= 0 && coord.1 < bounds.1
+}
+
 fn calculate_extended_nodes(x1: &i32, y1: &i32, x2: &i32, y2: &i32, bounds: &(i32, i32)) -> Vec<(i32, i32)> {
     let x_delta = x1 - x2;
     let y_delta = y1 - y2;
@@ -56,10 +60,6 @@ fn calculate_extended_nodes(x1: &i32, y1: &i32, x2: &i32, y2: &i32, bounds: &(i3
     }
 
     points
-}
-
-fn is_inbounds(coord: &(i32, i32), bounds: &(i32, i32)) -> bool {
-    coord.0 >= 0 && coord.0 < bounds.0 && coord.1 >= 0 && coord.1 < bounds.1
 }
 
 fn count_anti_nodes(nodes: &HashMap<char, Vec<(i32, i32)>>, bounds: &(i32, i32)) -> i32 {
