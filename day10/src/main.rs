@@ -36,8 +36,6 @@ fn get_valid_neighbors(mountain: &Vec<Vec<usize>>, x: usize, y: usize) -> Vec<(u
         }
     }
 
-    // println!("Found {:#?}", neighbors);
-
     neighbors
 }
 
