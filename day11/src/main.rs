@@ -49,9 +49,8 @@ fn blink(stones: &mut Vec<i64>) {
 }
 
 fn stones_after_n_blinks(stones: &mut Vec<i64>, count: usize) -> Vec<i64> {
-    for i in 0..count {
+    for _ in 0..count {
         blink(stones);
-        println!("{}, length: {}", i, stones.len());
     }
 
     stones.clone()
