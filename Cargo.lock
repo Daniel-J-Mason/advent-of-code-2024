@@ -110,6 +110,17 @@ name = "day13"
 version = "0.1.0"
 dependencies = [
  "common",
+ "lazy_static",
+ "regex",
+]
+
+[[package]]
+name = "day14"
+version = "0.1.0"
+dependencies = [
+ "common",
+ "lazy_static",
+ "regex",
 ]
 
 [[package]]
